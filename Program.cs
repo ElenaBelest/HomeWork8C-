@@ -21,8 +21,7 @@ void Start()
             case 0: return; break;
             case 54: OrderArray(); break;
             case 56: MinSumRows(); break;
-            // case 52: AverageColumns
-            //(); break;
+            case 58: ProductOfArrays(); break;
             default: Console.WriteLine("error"); break;
         }
     }
@@ -48,7 +47,7 @@ int SetNumber(string numberName)
 
 
 
-void OrderArray ()
+void OrderArray()
 {
     Console.Clear();
 
@@ -59,37 +58,37 @@ void OrderArray ()
     Console.Write("Enter number of columns:\t");
     int column = int.Parse(Console.ReadLine());
 
-    int [,] array = new int [row,column];
+    int[,] array = new int[row, column];
 
     GetRandomArray(array);
     PrintArray(array);
 
-  for (int i = 0; i < array.GetLength(0); i++)
-  {
-    for (int j = 0; j < array.GetLength(1); j++)
-    { 
-        for (int n = 0; n < array.GetLength(1)-1; n++)
-
-        if (array[i, n] < array[i, n + 1])
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
         {
-          int temp = array[i, n + 1];
-          array[i, n + 1] = array[i, n];
-          array[i, n] = temp;
-        }
-      }
-    }
-  Console.WriteLine();
-  PrintArray(array);
-}
-    
+            for (int n = 0; n < array.GetLength(1) - 1; n++)
 
-void GetRandomArray(int [,] array)
+                if (array[i, n] < array[i, n + 1])
+                {
+                    int temp = array[i, n + 1];
+                    array[i, n + 1] = array[i, n];
+                    array[i, n] = temp;
+                }
+        }
+    }
+    Console.WriteLine();
+    PrintArray(array);
+}
+
+
+void GetRandomArray(int[,] array)
 {
-    for (int rows = 0; rows  < array.GetLength(0); rows++)
+    for (int rows = 0; rows < array.GetLength(0); rows++)
     {
         for (int columns = 0; columns < array.GetLength(1); columns++)
         {
-            array[rows,columns] = new Random().Next(10,100);
+            array[rows, columns] = new Random().Next(0, 10);
         }
     }
 }
@@ -97,16 +96,16 @@ void GetRandomArray(int [,] array)
 void PrintArray(int[,] array)
 {
     Console.WriteLine();
-    
+
     for (int i = 0; i < array.GetLength(0); i++)
     {
         Console.Write(" ");
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            Console.Write(array[i,j] + " ");
-        }   
+            Console.Write(array[i, j] + " ");
+        }
         Console.Write(" ");
-        Console.WriteLine(); 
+        Console.WriteLine();
     }
 }
 
@@ -129,7 +128,7 @@ void MinSumRows()
     Console.Write("Enter column:\t");
     int column = int.Parse(Console.ReadLine());
 
-    int [,] array = new int[row,column];
+    int[,] array = new int[row, column];
 
     GetRandomArray(array);
     PrintArray(array);
@@ -151,36 +150,36 @@ void MinSumRows()
     }
 
     Console.WriteLine();
-    Console.WriteLine("\n A row with the minimum sum of elements " + (minSum+1));
+    Console.WriteLine("\n A row with the minimum sum of elements " + (minSum + 1));
 
 
 }
 
-int SumRows(int [,] array, int i)
+int SumRows(int[,] array, int i)
 {
-    int sum = array[i,0];
+    int sum = array[i, 0];
     for (int j = 1; j < array.GetLength(1); j++)
-  {
-    sum += array[i,j];
-  }
-  return sum;
+    {
+        sum += array[i, j];
+    }
+    return sum;
 
 }
 
-void PrintSum(int [,] array)
+void PrintSum(int[,] array)
 {
     Console.WriteLine();
-      for (int i = 0; i < array.GetLength(0); i++)
-     {
-          int sum = 0;
-          for (int j = 0; j < array.GetLength(1);j++)
-          {
-             sum = sum + array[i,j];
-          }
-         
-          Console.Write(sum);
-          Console.Write(" ");
-     }
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        int sum = 0;
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            sum = sum + array[i, j];
+        }
+
+        Console.Write(sum);
+        Console.Write(" ");
+    }
     return;
 }
 
@@ -191,6 +190,42 @@ void PrintSum(int [,] array)
 // Результирующая матрица будет:
 // 18 20
 // 15 18
+
+void ProductOfArrays()
+{
+    Console.Clear();
+
+    Console.Write("Enter row: \t");
+    int row = int.Parse(Console.ReadLine());
+
+    Console.Write("Enter column:\t");
+    int column = int.Parse(Console.ReadLine());
+
+    int[,] array = new int[row, column];
+    int[,] array2 = new int[row, column];
+
+    GetRandomArray(array);
+    GetRandomArray(array2);
+    PrintArray(array);
+    PrintArray(array2);
+
+    int [,] array3 = new int[row, column];
+
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+     for (int j = 0; j < array.GetLength(1); j++)
+     {
+        int sum = 0;
+        for (int n = 0; n < array.GetLength(1); n++)
+        {
+           sum = sum + (array[i,n] * array2[n,j]);
+        }
+        array3 [i,j]= sum;
+     }   
+    }
+    PrintArray(array3);
+}
+
 
 // Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. 
 // Напишите программу, которая будет построчно выводить массив,
