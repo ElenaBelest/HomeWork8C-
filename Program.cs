@@ -89,7 +89,7 @@ void GetRandomArray(int[,] array)
     {
         for (int columns = 0; columns < array.GetLength(1); columns++)
         {
-            array[rows, columns] = new Random().Next(0, 10);
+            array[rows, columns] = new Random().Next(10, 100);
         }
     }
 }
