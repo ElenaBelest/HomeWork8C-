@@ -356,5 +356,31 @@ void SpiralArray()
         else
             i--;
     }
-    PrintArray(array);
+
+    PrintArray1(array);
+    
+}
+
+void PrintArray1(int[,] array)
+{
+    Console.WriteLine();
+
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        Console.Write(" ");
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if (array[i,j] < 10) 
+            {
+                Console.Write(array[i,j].ToString("00") + " ");
+            }
+            else
+            {
+                 Console.Write(array[i, j] + " ");
+            }
+            
+        }
+        Console.Write(" ");
+        Console.WriteLine();
+    }
 }
