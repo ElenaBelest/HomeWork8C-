@@ -171,6 +171,7 @@ int SumRows(int[,] array, int i)
 void PrintSum(int[,] array)
 {
     Console.WriteLine();
+    Console.Write(" ");
     for (int i = 0; i < array.GetLength(0); i++)
     {
         int sum = 0;
@@ -179,7 +180,7 @@ void PrintSum(int[,] array)
             sum = sum + array[i, j];
         }
 
-        Console.Write(sum);
+        Console.WriteLine(sum);
         Console.Write(" ");
     }
     return;
