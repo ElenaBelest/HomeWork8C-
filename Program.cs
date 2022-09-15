@@ -23,6 +23,7 @@ void Start()
             case 56: MinSumRows(); break;
             case 58: ProductOfArrays(); break;
             case 60: Array3DOutput(); break;
+            case 62: SpiralArray(); break;
             default: Console.WriteLine("error"); break;
         }
     }
@@ -330,3 +331,30 @@ void PrintArray3D(int[,,] array)
 // 12 13 14 05
 // 11 16 15 06
 // 10 09 08 07
+
+void SpiralArray()
+{
+    
+    int n = 4;
+
+    int[,] array = new int[n, n];
+
+    int temp = 01;
+    int i = 0;
+    int j = 0;
+
+    while (temp <= n*n)
+    {
+        array[i, j] = temp;
+        temp++;
+        if (i <= j + 1 && i + j < array.GetLength(1) - 1)
+            j++;
+        else if (i < j && i + j >= array.GetLength(0) - 1)
+            i++;
+        else if (i >= j && i + j > array.GetLength(1) - 1)
+            j--;
+        else
+            i--;
+    }
+    PrintArray(array);
+}
