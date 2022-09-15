@@ -22,6 +22,7 @@ void Start()
             case 54: OrderArray(); break;
             case 56: MinSumRows(); break;
             case 58: ProductOfArrays(); break;
+            case 60: Array3DOutput(); break;
             default: Console.WriteLine("error"); break;
         }
     }
@@ -53,10 +54,10 @@ void OrderArray()
 
     Console.Write("Enter number of rows: \t");
 
-    int row = int.Parse(Console.ReadLine());
+    int row = Convert.ToInt32(Console.ReadLine());
 
     Console.Write("Enter number of columns:\t");
-    int column = int.Parse(Console.ReadLine());
+    int column = Convert.ToInt32(Console.ReadLine());
 
     int[,] array = new int[row, column];
 
@@ -123,10 +124,10 @@ void MinSumRows()
     Console.Clear();
 
     Console.Write("Enter row: \t");
-    int row = int.Parse(Console.ReadLine());
+    int row = Convert.ToInt32(Console.ReadLine());
 
     Console.Write("Enter column:\t");
-    int column = int.Parse(Console.ReadLine());
+    int column = Convert.ToInt32(Console.ReadLine());
 
     int[,] array = new int[row, column];
 
@@ -196,10 +197,10 @@ void ProductOfArrays()
     Console.Clear();
 
     Console.Write("Enter row: \t");
-    int row = int.Parse(Console.ReadLine());
+    int row = Convert.ToInt32(Console.ReadLine());
 
     Console.Write("Enter column:\t");
-    int column = int.Parse(Console.ReadLine());
+    int column = Convert.ToInt32(Console.ReadLine());
 
     int[,] array = new int[row, column];
     int[,] array2 = new int[row, column];
@@ -235,6 +236,93 @@ void ProductOfArrays()
 // 34(1,0,0) 41(1,1,0)
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
+
+void Array3DOutput()
+{
+    Console.Clear();
+
+    Console.Write("Enter first number: \t");
+    int number1 = Convert.ToInt32(Console.ReadLine());
+
+    Console.Write("Enter second number:\t");
+    int number2 = Convert.ToInt32(Console.ReadLine());
+
+    Console.Write("Enter third number:\t");
+    int number3 = Convert.ToInt32(Console.ReadLine());
+
+    int [,,] array = new int[number1,number2,number3];
+
+    GetRandomArray3D(array);
+    PrintArray3D(array);
+
+}
+
+// void GetRandomArray3D(int[,,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             for (int k = 0; k < array.GetLength(2); k++)
+//                 array[i, j, k] = new Random().Next(10, 100);
+//         
+//         }
+//     }
+// }
+
+void GetRandomArray3D(int[,,] array)
+
+{
+  int[] temp = new int[array.GetLength(0) * array.GetLength(1) * array.GetLength(2)];
+  int  number;
+  for (int i = 0; i < temp.GetLength(0); i++)
+  {
+    temp[i] = new Random().Next(10, 100);
+    number = temp[i];
+    {
+      for (int j = 0; j < i; j++)
+      {
+        if (temp[i] == temp[j])
+        {
+          temp[i] = new Random().Next(10,100);
+          j = 0;
+          number = temp[i];
+        }
+          number = temp[i];
+      }
+    }
+  }
+  int count = 0; 
+  for (int k = 0; k < array.GetLength(0); k++)
+  {
+    for (int n = 0; n < array.GetLength(1); n++)
+    {
+      for (int m = 0; m < array.GetLength(2); m++)
+      {
+        array[k, n, m] = temp[count];
+        count++;
+      }
+    }
+  }
+}
+
+void PrintArray3D(int[,,] array)
+{
+    Console.WriteLine();
+
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            for (int k = 0; k < array.GetLength(2); k++)
+            {
+                Console.Write($" {array[i, j, k]} ({i}, {j}, {k})");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
 
 // Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 // Например, на выходе получается вот такой массив:
